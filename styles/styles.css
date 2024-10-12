@@ -1,0 +1,344 @@
+/* 變數 */
+:root {
+    --primary-bg: #fef9f4;
+    --secondary-bg: #ffd699;
+    --light-bg: #003049;
+    --accent: #28587b;
+    --text-light: #fef9f4;
+    --text-dark: #003049;
+}
+
+/* global */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    font-size: 1.6rem;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--primary-bg);
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-light {
+    color: var(--text-light);
+}
+
+.text-dark {
+    color: var(--text-dark);
+}
+
+.m-1 {
+    margin: 1rem;
+}
+
+.p-1 {
+    padding: 1rem;
+}
+
+/* Header */
+header {
+    background-color: var(--primary-bg);
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    font-size: 2.4rem;
+    font-weight: bold;
+}
+
+.menu-icon {
+    display: none;
+    font-size: 3rem;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+@media (max-width: 768px) {
+    .menu-icon {
+        display: block;
+    }
+}
+
+/* Navbar */
+.navbar {
+    background: var(--accent);
+    position: fixed;
+    top: 0;
+    left: -220px; 
+    width: 200px;
+    height: 100%;
+    overflow-y: auto;
+    transition: left 0.3s ease;
+    z-index: 99;
+    padding-top: 80px; 
+}
+
+.navbar.active {
+    left: 0;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-left: 1.5rem;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    font-size: 1.8rem;
+    color: var(--text-light);
+    transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+    color: var(--secondary-bg);
+}
+
+
+/* max-width */
+@media (min-width: 769px) {
+    header {
+        position: fixed;
+        width: calc(100% - 200px);
+        left: 200px;
+    }
+
+    .navbar {
+        left: 0;
+    }
+
+    .menu-icon {
+        display: none;
+    }
+
+    body {
+        display: flex;
+    }
+
+    main {
+        margin-left: 200px;
+        width: calc(100% - 200px);
+    }
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: var(--secondary-bg);
+    margin-top: 80px;
+}
+
+@media (min-width: 769px) {
+    .hero {
+        margin-top: 0;
+    }
+}
+
+/* 按鈕 */
+.btn {
+    background: var(--accent);
+    color: var(--text-light);
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    transition: background 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn:hover {
+    background: var(--light-bg);
+    color: var(--primary-bg);
+}
+
+.btn:focus {
+    outline: 3px solid var(--secondary-bg);
+}
+
+.btn-light {
+    background: var(--light-bg); 
+    color: var(--primary-bg); 
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    transition: background 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-light:hover {
+    background: var(--primary-bg); 
+    color: var(--text-dark); 
+}
+
+.btn-light:focus {
+    outline: 3px solid var(--primary-bg); 
+}
+
+
+/* 區塊 */
+section {
+    padding: 4rem 0;
+}
+
+h2 {
+    font-size: 2.8rem;
+    margin-bottom: 2rem;
+}
+
+p {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+}
+
+/* About Section */
+.about-section {
+    background-color: var(--primary-bg);
+}
+
+/* Projects Section */
+.projects-section {
+    background-color: var(--secondary-bg);
+}
+
+.projects-section h2 {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+}
+
+.project-box {
+    background-color: var(--primary-bg);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    text-align: center;
+}
+
+.project-box h3 {
+    font-size: 2.4rem;
+    margin-bottom: 1rem;
+}
+
+.project-box p {
+    font-size: 1.6rem;
+}
+
+/* Contact Section */
+.contact-section {
+    background-color: var(--primary-bg);
+}
+
+.contact-section form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-section input,
+.contact-section textarea {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--accent);
+    border-radius: 0.5rem;
+    font-size: 1.6rem;
+}
+
+.contact-section button {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.8rem;
+}
+
+/* Footer */
+.footer {
+    background-color: var(--light-bg);
+    color: var(--text-light);
+    padding: 2rem 0;
+}
+
+.footer .social a {
+    margin: 0 1rem;
+    text-decoration: none;
+    color: var(--text-light);
+    transition: color 0.3s ease;
+}
+
+.footer .social a:hover {
+    color: var(--accent);
+}
+
+.footer .copyright {
+    margin-top: 1rem;
+    font-size: 1.4rem;
+}
+
+/* Grid System */
+.grid-row {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 2rem;
+}
+
+.col-6 {
+    grid-column: span 6;
+}
+
+.col-4 {
+    grid-column: span 4;
+}
+
+@media (max-width: 1024px) {
+    .grid-row {
+        grid-template-columns: repeat(8, 1fr);
+    }
+
+    .col-6 {
+        grid-column: span 8;
+    }
+
+    .col-4 {
+        grid-column: span 8;
+    }
+}
+
+@media (max-width: 768px) {
+    .grid-row {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .col-6, .col-4 {
+        grid-column: span 1;
+    }
+}
+
+/* 自訂滾動條 */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--accent);
+    border-radius: 10px;
+}
