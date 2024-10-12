@@ -11,6 +11,11 @@
     <!-- Header -->
     <header>
         <div class="container">
+            <!-- Search Form -->
+            <form action="/search" method="GET" class="search-form">
+                <input type="search" name="q" placeholder="Search..." aria-label="Search">
+                <button type="submit">Search</button>
+            </form>
             <!-- <div class="logo text-dark">My<span class="text-light">Website</span></div> -->
             <div class="menu-icon" id="menu-icon">&#9776;</div>
         </div>
@@ -20,6 +25,7 @@
     <!-- Navbar -->
     <nav class="navbar" id="navbar">
         <ul class="nav-links">
+            <li></li>
             <li></li>
             <li></li>
             <li><a href="dashboard.html" class="text-dark">Dashboard</a></li>
@@ -40,6 +46,14 @@
                 <h1 class="text-dark">Welcome to My Website</h1>
                 <p>This is a clean and responsive layout.</p>
                 <a href="#about" class="btn">Learn More</a>
+            </div>
+        </section>
+
+        <!-- Event List Section -->
+        <section id="events" class="events-section">
+            <div class="container text-center">
+                <h2>Events This Week</h2>
+                <div id="event-list" class="event-list"></div> <!-- Container for event list -->
             </div>
         </section>
 
@@ -106,5 +120,7 @@
             navbar.classList.toggle('active');
         });
     </script>
+    <script type="module" src="scripts/eventsModule.js"></script>
+
 </body>
 </html>
