@@ -22,13 +22,37 @@ function formatDateToApi(date) {
     return date.toISOString().split('T')[0];
 }
 
+// document.addEventListener('DOMContentLoaded', async () => {
+//     const eventContainer = document.getElementById('event-list'); // Ensure you have an element with this ID in the HTML
+//     const datasetId = 'brisbane-city-council-events';
+//     const { startOfWeek, endOfWeek } = getWeekDateRange();
+
+//     const queryParams = {
+//         limit: 100,
+//         order_by: 'start_datetime',
+//         where: `start_datetime >= date'${formatDateToApi(startOfWeek)}' AND end_datetime <= date'${formatDateToApi(endOfWeek)}'`
+//     };
+
+//     try {
+//         const eventsThisWeek = await fetchRecordsInBatches(datasetId, queryParams);
+//         console.log('Fetched events:', eventsThisWeek);
+
+//         // Render events into the container
+//         renderEvents(eventsThisWeek, eventContainer);
+//     } catch (error) {
+//         console.error('Error fetching events:', error);
+//         eventContainer.innerHTML = '<p>Error fetching events.</p>';
+//     }
+// });
+
+
 document.addEventListener('DOMContentLoaded', async () => {
-    const eventContainer = document.getElementById('event-list'); // Ensure you have an element with this ID in the HTML
+    const eventContainer = document.getElementById('event-list');
     const datasetId = 'brisbane-city-council-events';
     const { startOfWeek, endOfWeek } = getWeekDateRange();
 
     const queryParams = {
-        limit: 100,
+        limit: 100, // You can adjust the limit here
         order_by: 'start_datetime',
         where: `start_datetime >= date'${formatDateToApi(startOfWeek)}' AND end_datetime <= date'${formatDateToApi(endOfWeek)}'`
     };
@@ -37,10 +61,49 @@ document.addEventListener('DOMContentLoaded', async () => {
         const eventsThisWeek = await fetchRecordsInBatches(datasetId, queryParams);
         console.log('Fetched events:', eventsThisWeek);
 
-        // Render events into the container
-        renderEvents(eventsThisWeek, eventContainer);
+        let currentPage = 1;
+        const itemsPerPage = 5;
+        const totalPages = Math.ceil(eventsThisWeek.length / itemsPerPage);
+
+        // Initial render
+        renderEvents(eventsThisWeek, eventContainer, currentPage, itemsPerPage);
+
+        // Pagination controls
+        const prevButton = document.getElementById('prev-page');
+        const nextButton = document.getElementById('next-page');
+        const pageInfo = document.getElementById('page-info');
+
+        // Update page info display
+        pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+
+        prevButton.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                renderEvents(eventsThisWeek, eventContainer, currentPage, itemsPerPage);
+                pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+                togglePaginationButtons();
+            }
+        });
+
+        nextButton.addEventListener('click', () => {
+            if (currentPage < totalPages) {
+                currentPage++;
+                renderEvents(eventsThisWeek, eventContainer, currentPage, itemsPerPage);
+                pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+                togglePaginationButtons();
+            }
+        });
+
+        function togglePaginationButtons() {
+            prevButton.disabled = currentPage === 1;
+            nextButton.disabled = currentPage === totalPages;
+        }
+
+        // Initial button state
+        togglePaginationButtons();
     } catch (error) {
         console.error('Error fetching events:', error);
         eventContainer.innerHTML = '<p>Error fetching events.</p>';
     }
 });
+

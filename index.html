@@ -5,6 +5,7 @@
     <title>Responsive Web Page with Left Sidebar</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles/styles.css">
+    <link rel="stylesheet" href="/styles/pagination.css">
 </head>
 <body>
 
@@ -54,8 +55,20 @@
             <div class="container text-center">
                 <h2>Events This Week</h2>
                 <div id="event-list" class="event-list"></div> <!-- Container for event list -->
+        
+                <!-- Pagination Controls -->
+                <div class="pagination-controls">
+                    <button id="prev-page">Previous Page</button>
+                    <span id="page-info" class="pagination-info">Page 1 of X</span> <!-- Display current page and total pages -->
+                    <button id="next-page">Next Page</button>
+                </div>
             </div>
         </section>
+
+        
+        
+        
+        
 
         <!-- About Section -->
         <section id="about" class="about-section">
